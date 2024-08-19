@@ -1,4 +1,4 @@
-package com.example.linewebhookjava.entity;
+package com.example.linewebhookjava.entity.datasource1;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -9,8 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProjectItems {
-
-
 
     @Column(name = "project_item_name")
     private String projectItemNameTest;

@@ -1,7 +1,7 @@
-package com.example.linewebhookjava.repository;
+package com.example.linewebhookjava.repository.datasource1;
 
-import com.example.linewebhookjava.entity.ProjectItems;
-import com.example.linewebhookjava.entity.Projects;
+import com.example.linewebhookjava.entity.datasource1.ProjectItems;
+import com.example.linewebhookjava.entity.datasource1.Projects;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;

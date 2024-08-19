@@ -1,8 +1,8 @@
 package com.example.linewebhookjava.controller;
 
-import com.example.linewebhookjava.entity.datasource1.ProjectItems;
-import com.example.linewebhookjava.entity.datasource1.Projects;
-import com.example.linewebhookjava.service.MyNewService;
+import com.example.linewebhookjava.entity.datasource2.ProjectItems2;
+import com.example.linewebhookjava.entity.datasource2.Projects2;
+import com.example.linewebhookjava.service.MySecondService;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,50 +20,54 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/first/")
-public class TestController {
+@RequestMapping("/second/")
+public class TestSecondController {
 
     @Autowired
-    protected MyNewService myNewService;
+    protected MySecondService mySecondService;
 
     @GetMapping("/saveProject")
     public ResponseEntity<Object> saveProject() {
-        return ResponseEntity.ok(myNewService.saveProject());
+        return ResponseEntity.ok(mySecondService.saveProject());
     }
 
     @GetMapping("/saveProject2")
-    public ResponseEntity<Projects> saveProject(@RequestParam(required = false) String project) {
-        return ResponseEntity.ok(myNewService.saveMainEntity(project));
+    public ResponseEntity<Projects2> saveProject(@RequestParam(required = false) String project) {
+        return ResponseEntity.ok(mySecondService.saveMainEntity(project));
     }
 
+//    @GetMapping("/getAllProject")
+//    public String getAllProject() {
+//        return "test";
+//    }
     @GetMapping("/getAllProject")
-    public List<Projects> getAllProject() {
-        return myNewService.getAllProject();
+    public List<Projects2> getAllProject() {
+        return mySecondService.getAllProject();
     }
 
     @GetMapping("/getByProjectId/{projectId}")
-    public Projects getAllProject(@PathVariable Long projectId) {
-        return myNewService.getByProjectId(projectId);
+    public Projects2 getAllProject(@PathVariable Long projectId) {
+        return mySecondService.getByProjectId(projectId);
     }
 
-    @GetMapping("/findItemUpdatesByProjectId/{projectId}")
-    public List<ProjectItems> findItemUpdatesByProjectId(@PathVariable Long projectId) {
-        return myNewService.findItemUpdatesByProjectId(projectId);
-    }
+//    @GetMapping("/findItemUpdatesByProjectId/{projectId}")
+//    public List<ProjectItems2> findItemUpdatesByProjectId(@PathVariable Long projectId) {
+//        return mySecondService.findItemUpdatesByProjectId(projectId);
+//    }
 
     @PostMapping("/updateProject")
-    public ResponseEntity<Projects> updateProject(@RequestBody Projects project) {
-        return ResponseEntity.ok(myNewService.updateProject(project));
+    public ResponseEntity<Projects2> updateProject(@RequestBody Projects2 project) {
+        return ResponseEntity.ok(mySecondService.updateProject(project));
     }
 
     @DeleteMapping("/deleteProject/{projectId}")
     public ResponseEntity<Object> deleteProject(@PathVariable Long projectId) {
-        Projects project = myNewService.getByProjectId(projectId);
+        Projects2 project = mySecondService.getByProjectId(projectId);
         if (project == null) {
             return ResponseEntity.notFound().build();
         }
 
-        myNewService.deleteProject(projectId);
+        mySecondService.deleteProject(projectId);
         return ResponseEntity.ok().build();
     }
 

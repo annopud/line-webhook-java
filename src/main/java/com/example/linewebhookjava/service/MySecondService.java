@@ -1,8 +1,8 @@
 package com.example.linewebhookjava.service;
 
-import com.example.linewebhookjava.entity.datasource1.ProjectItems;
-import com.example.linewebhookjava.entity.datasource1.Projects;
-import com.example.linewebhookjava.repository.datasource1.ProjectsRepository;
+import com.example.linewebhookjava.entity.datasource2.ProjectItems2;
+import com.example.linewebhookjava.entity.datasource2.Projects2;
+import com.example.linewebhookjava.repository.datasource2.Projects2Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,25 +10,25 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class MyNewService {
+public class MySecondService {
 
     @Autowired
-    protected ProjectsRepository projectsRepository;
+    protected Projects2Repository projectsRepository;
 
-    public Projects saveProject() {
-        Projects newProject = new Projects();
+    public Projects2 saveProject() {
+        Projects2 newProject = new Projects2();
         newProject.setProjectName("New Project");
         return projectsRepository.save(newProject);
     }
 
     @Transactional
-    public Projects saveMainEntity(String project) {
-        Projects newProject = new Projects(project);
+    public Projects2 saveMainEntity(String project) {
+        Projects2 newProject = new Projects2(project);
 
-        ProjectItems newProjectItem = new ProjectItems();
+        ProjectItems2 newProjectItem = new ProjectItems2();
         newProjectItem.setProjectItemNameTest(project + " Item " + 1);
 
-        ProjectItems newProjectItem2 = new ProjectItems();
+        ProjectItems2 newProjectItem2 = new ProjectItems2();
         newProjectItem2.setProjectItemNameTest(project + " Item " + 2);
 
         newProject.addItem(newProjectItem);
@@ -36,26 +36,26 @@ public class MyNewService {
         return projectsRepository.save(newProject);
     }
 
-    public List<Projects> getAllProject() {
+    public List<Projects2> getAllProject() {
         return projectsRepository.findAll();
     }
 
-    public Projects getByProjectId(Long projectId) {
+    public Projects2 getByProjectId(Long projectId) {
         return projectsRepository.findById(projectId).orElse(null);
     }
 
-    public List<ProjectItems> findItemUpdatesByProjectId(Long id) {
-        return projectsRepository.findItemUpdatesByProjectId(id);
-    }
+//    public List<ProjectItems2> findItemUpdatesByProjectId(Long id) {
+//        return projectsRepository.findItemUpdatesByProjectId(id);
+//    }
 
     @Transactional
-    public Projects updateProject(Projects project) {
+    public Projects2 updateProject(Projects2 project) {
         return projectsRepository.save(project);
     }
 
     @Transactional
     public void deleteProject(Long projectId) {
-        Projects project = getByProjectId(projectId);
+        Projects2 project = getByProjectId(projectId);
         if (project == null) {
             return;
         }
