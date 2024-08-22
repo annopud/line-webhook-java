@@ -1,3 +1,7 @@
+create database my_database;
+GRANT ALL PRIVILEGES ON DATABASE my_database TO postgres;
+
+\c my_database;
 
 -- Drop the users table if it exists
 DROP TABLE IF EXISTS users;
